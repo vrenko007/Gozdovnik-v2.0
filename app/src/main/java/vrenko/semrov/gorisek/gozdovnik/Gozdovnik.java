@@ -21,7 +21,6 @@ public class Gozdovnik extends Application {
         ParseFacebookUtils.initialize(getString(R.string.facebook_app_id));
 
         Parse.enableLocalDatastore(this);
-        ParseObject.registerSubclass(Answer.class);
         ParseObject.registerSubclass(Question.class);
         ParseObject.registerSubclass(Handout.class);
     }

@@ -4,7 +4,6 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.1.4'
     compile 'com.android.support:support-v4:21.0.0'
     compile fileTree(dir: 'libs', include: '*.jar')
-
     provided 'com.facebook.android:facebook-android-sdk:3.21.1'
 }
 
@@ -23,5 +22,9 @@ android {
             java.srcDirs = ['src']
             res.srcDirs = ['res']
         }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_7
     }
 }

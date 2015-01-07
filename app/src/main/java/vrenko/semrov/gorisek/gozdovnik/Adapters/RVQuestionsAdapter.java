@@ -20,6 +20,7 @@ public class RVQuestionsAdapter extends RecyclerView.Adapter<RVQuestionsAdapter.
 
     public RVQuestionsAdapter(List<Question> mDataset) {
         this.mDataset = mDataset;
+
     }
 
     @Override
@@ -29,6 +30,7 @@ public class RVQuestionsAdapter extends RecyclerView.Adapter<RVQuestionsAdapter.
                 .inflate(R.layout.question_list_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
         //...
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -42,7 +44,7 @@ public class RVQuestionsAdapter extends RecyclerView.Adapter<RVQuestionsAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataset.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
