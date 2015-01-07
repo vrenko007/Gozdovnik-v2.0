@@ -1,11 +1,8 @@
 package vrenko.semrov.gorisek.gozdovnik.Models;
 
-import com.parse.FindCallback;
 import com.parse.ParseClassName;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseRelation;
-
+import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +14,48 @@ import java.util.List;
 public class Question extends ParseObject {
 
 
-    List<Answer> answers;
+    public String getQuestion(){
+        return getString("question");
+    }
 
-    public List<Answer> getAnswers(){
-        answers = new ArrayList<>();
+    public String getType(){
+        return getString("type");
+    }
 
-        ParseRelation<Answer> ans = getRelation("answers");
 
-        ans.getQuery().findInBackground(new FindCallback<Answer>() {
-            @Override
-            public void done(List<Answer> parseObjects, ParseException e) {
+    public List<String> getAnswers(){
 
-                answers.addAll(parseObjects);
+        JSONArray json = getJSONArray("answers");
+        List<String> array = new ArrayList<>();
 
+        int len = json.length();
+
+        for (int i = 0; i<len; i++){
+            try {
+                array.add(json.getString(i));
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        });
+        }
 
-        return answers;
+        return array;
+    }
+
+    public List<Integer> getCorrectAnswers(){
+
+        JSONArray json = getJSONArray("answers");
+        List<Integer> array = new ArrayList<>();
+
+        int len = json.length();
+
+        for (int i = 0; i<len; i++){
+            try {
+                array.add(json.getInt(i));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        return array;
     }
 }
