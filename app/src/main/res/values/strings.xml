@@ -12,4 +12,7 @@
         <item>public_profile</item>
         <item>user_friends</item>
     </string-array>
+
+    <string name="title_activity_quiz">QuizActivity</string>
+
 </resources>

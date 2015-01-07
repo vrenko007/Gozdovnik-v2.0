@@ -5,8 +5,6 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 
-import java.io.File;
-
 /**
  * Created by vrenko on 06/01/15.
  */

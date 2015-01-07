@@ -6,7 +6,6 @@ import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 
-import vrenko.semrov.gorisek.gozdovnik.Models.Answer;
 import vrenko.semrov.gorisek.gozdovnik.Models.Handout;
 import vrenko.semrov.gorisek.gozdovnik.Models.Question;
 
