@@ -11,9 +11,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.artifex.mupdfdemo.MuPDFActivity;
+import com.artifex.mupdfdemo.MuPDFActivityBytes;
 import com.parse.ParseUser;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -45,20 +50,28 @@ public class HomeActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 File f = new File(path);
-                if(f.exists())
-                {
-                    Intent intent = new Intent(v.getContext(), MuPDFActivity.class);
-                    intent.setAction("android.intent.action.VIEW");
-                    intent.setData(Uri.fromFile(f));
-                    intent.putExtra("FileName", path);
-                    startActivity(intent);
+                try {
+                    FileInputStream fis = new FileInputStream(f);
+                   byte buffer[] = new byte[(int)f.length()];
+                   fis.read(buffer);
+                   Intent intent = new Intent(v.getContext(), MuPDFActivityBytes.class);
+                   intent.setAction("android.intent.action.VIEW");
+                        //intent.setData(Uri.fromFile(f));
+                   intent.putExtra("buffer",buffer);
+                   intent.putExtra("FileName", "PDF_NASLOV");
 
-
+                    intent.setType("application/pdf");
+                   startActivity(intent);
                 }
-                else
+                catch (FileNotFoundException e)
                 {
-                    Toast.makeText(v.getContext(),"Ne najdem test.pdf",Toast.LENGTH_LONG).show();
+                    Toast.makeText(v.getContext(), "Ne najdem test.pdf", Toast.LENGTH_LONG).show();
                 }
+                catch (IOException io)
+                {
+                    Toast.makeText(v.getContext(), "Napaka pri branju datoteke", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
