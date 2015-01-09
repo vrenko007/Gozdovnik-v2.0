@@ -57,6 +57,9 @@
         <activity android:name="com.artifex.mupdfdemo.MuPDFActivity">
         </activity>
 
+        <activity android:name="com.artifex.mupdfdemo.MuPDFActivityBytes">
+        </activity>
+
     </application>
 
 </manifest>
