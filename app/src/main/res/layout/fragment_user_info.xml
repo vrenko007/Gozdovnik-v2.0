@@ -18,7 +18,8 @@
         android:layout_height="85dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="#258f8f8f">
+        android:background="#258f8f8f"
+        android:id="@+id/relativeLayout">
 
         <ImageView
             android:layout_width="50dp"
@@ -30,16 +31,37 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp" />
 
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:id="@+id/logoutImage"
+            android:src="@drawable/ic_logout"
+            android:layout_alignBottom="@+id/userImage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Matic Vrenko"
             android:id="@+id/userName"
-            android:layout_alignBottom="@+id/userImage"
+            android:textColor="#ffffffff"
+            android:layout_alignBottom="@+id/logoutImage"
             android:layout_toEndOf="@+id/userImage"
             android:layout_marginStart="16dp"
-            android:textColor="#ffffffff"
-            android:layout_marginEnd="16dp" />
+            android:layout_toStartOf="@id/logoutImage" />
+
     </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quizi"
+        android:id="@+id/quizzes"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:layout_alignParentEnd="false" />
 
 </RelativeLayout>

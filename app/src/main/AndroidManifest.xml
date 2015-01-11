@@ -53,13 +53,18 @@
             android:name=".QuizActivity"
             android:label="@string/title_activity_quiz" >
         </activity>
-
-        <activity android:name="com.artifex.mupdfdemo.MuPDFActivity">
+        <activity android:name="com.artifex.mupdfdemo.MuPDFActivity" >
         </activity>
-
-        <activity android:name="com.artifex.mupdfdemo.MuPDFActivityBytes">
+        <activity android:name="com.artifex.mupdfdemo.MuPDFActivityBytes" >
         </activity>
-
+        <activity
+            android:name=".CourseList"
+            android:label="@string/title_activity_course_list" >
+        </activity>
+        <activity
+            android:name=".QuizListActivity"
+            android:label="@string/title_activity_course_list" >
+        </activity>
     </application>
 
 </manifest>

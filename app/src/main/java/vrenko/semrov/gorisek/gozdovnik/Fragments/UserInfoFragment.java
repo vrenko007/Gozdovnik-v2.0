@@ -1,13 +1,20 @@
 package vrenko.semrov.gorisek.gozdovnik.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
+import com.parse.ParseUser;
+
+import vrenko.semrov.gorisek.gozdovnik.LoginDispatchActivity;
+import vrenko.semrov.gorisek.gozdovnik.QuizListActivity;
 import vrenko.semrov.gorisek.gozdovnik.R;
 
 /**
@@ -19,8 +26,6 @@ import vrenko.semrov.gorisek.gozdovnik.R;
  * create an instance of this fragment.
  */
 public class UserInfoFragment extends Fragment {
-
-    // TODO: Rename and change types and number of parameters
     public static UserInfoFragment newInstance() {
         UserInfoFragment fragment = new UserInfoFragment();
         return fragment;
@@ -35,6 +40,27 @@ public class UserInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_user_info, container, false);
+
+        ImageView iv = (ImageView) v.findViewById(R.id.logoutImage);
+
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                startActivity(new Intent(getActivity(), LoginDispatchActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        Button quizi = (Button) v.findViewById(R.id.quizzes);
+
+        quizi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QuizListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
     }

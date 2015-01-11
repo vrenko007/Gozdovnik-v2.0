@@ -61,7 +61,7 @@ public class RVAchievementsAdapter extends RecyclerView.Adapter<RVAchievementsAd
         }
 
         public void setmName(String mName) {        this.mName.setText(mName);      }
-        public void setmValue(int mValue){           this.mValue.setText(mValue);    }
+        public void setmValue(int mValue){           this.mValue.setText(String.format("%04d",mValue));    }
         public void setmDescription(String mDescription){this.mDescription.setText(mDescription);   }
         public void setmPicture(Bitmap mPicture){   this.mPicture.setImageBitmap(mPicture);}
 

@@ -6,8 +6,10 @@ import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 
+import vrenko.semrov.gorisek.gozdovnik.Models.Achievement;
 import vrenko.semrov.gorisek.gozdovnik.Models.Handout;
 import vrenko.semrov.gorisek.gozdovnik.Models.Question;
+import vrenko.semrov.gorisek.gozdovnik.Models.Quiz;
 
 /**
  * Created by vrenko on 06/01/15.
@@ -21,6 +23,8 @@ public class Gozdovnik extends Application {
         ParseFacebookUtils.initialize(getString(R.string.facebook_app_id));
 
         Parse.enableLocalDatastore(this);
+        ParseObject.registerSubclass(Achievement.class);
+        ParseObject.registerSubclass(Quiz.class);
         ParseObject.registerSubclass(Question.class);
         ParseObject.registerSubclass(Handout.class);
     }
