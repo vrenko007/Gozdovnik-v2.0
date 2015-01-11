@@ -13,6 +13,9 @@ import java.util.List;
 @ParseClassName("Question")
 public class Question extends ParseObject {
 
+    public static final String SINGLE_ANSWER = "vrenko.semrov.gorisek.gozdovnik.question.SINGLE_ANSWER_TYPE";
+    public static final String MULTIPLE_ANSWER = "vrenko.semrov.gorisek.gozdovnik.question.MULTIPLE_ANSWER_TYPE";
+
 
     public String getQuestion(){
         return getString("question");
