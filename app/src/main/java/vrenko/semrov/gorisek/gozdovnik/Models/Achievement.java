@@ -8,6 +8,8 @@ import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +17,26 @@ import java.util.List;
 /**
  * Created by vrenko on 11/01/15.
  */
-
 @ParseClassName("Achievement")
 public class Achievement extends ParseObject {
 
-    public String getName(){ return getString("name"); }
-    public int getValue(){  return getInt("value"); }
-    public String getDescription(){ return getString("description"); }
-    public Bitmap getPicture(){
+    public boolean isAchievementAchieved() {
+        return achievementAchieved;
+    }
+
+    public void setAchievementAchieved(boolean achievementAchieved) {
+        this.achievementAchieved = achievementAchieved;
+    }
+
+    private boolean achievementAchieved = false;
+
+    public String getName() {
+        return getString("name");
+    }
+
+    public Bitmap getPicture() {
         try {
-            byte[] byteArray  = getParseFile("picture").getData();
+            byte[] byteArray = getParseFile("picture").getData();
             return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         } catch (com.parse.ParseException e) {
             e.printStackTrace();
@@ -32,12 +44,24 @@ public class Achievement extends ParseObject {
         }
     }
 
-    public static void getAchievements(final OnAchievementsRecievedListener listener){
+    public static void getAchievements(final OnAchievementsRecievedListener listener) {
         ParseQuery<Achievement> pqa = ParseQuery.getQuery(Achievement.class);
         pqa.findInBackground(new FindCallback<Achievement>() {
             @Override
-            public void done(List<Achievement> achievements, com.parse.ParseException e) {
-                listener.achievementReceived(achievements);
+            public void done(final List<Achievement> achievements, com.parse.ParseException e) {
+                ParseRelation<Achievement> pr = ParseUser.getCurrentUser().getRelation("achivements");
+                pr.getQuery().findInBackground(new FindCallback<Achievement>() {
+                    @Override
+                    public void done(List<Achievement> parseObjects, ParseException e) {
+                        for(Achievement a:achievements){
+                            if(parseObjects.contains(a)){
+                                a.setAchievementAchieved(true);
+                            }
+                        }
+                        listener.achievementReceived(achievements);
+                    }
+                });
+
             }
         });
 
@@ -50,19 +74,19 @@ public class Achievement extends ParseObject {
         List<Achievement> achivements = new ArrayList<>();
 
         try {
-             achivements = pq.find();
+            achivements = pq.find();
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        if(achivements.size()<1){
+        if (achivements.size() < 1) {
             return null;
         }
 
         return achivements.get(0);
     }
 
-    public interface OnAchievementsRecievedListener{
-        public void achievementReceived(List <Achievement> achievement);
+    public interface OnAchievementsRecievedListener {
+        public void achievementReceived(List<Achievement> achievement);
     }
 }

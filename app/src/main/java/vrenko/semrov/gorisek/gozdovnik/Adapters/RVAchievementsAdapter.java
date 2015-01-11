@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -26,13 +25,16 @@ public class RVAchievementsAdapter extends RecyclerView.Adapter<RVAchievementsAd
     @Override
     public RVAchievementsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.achievement_list_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.setmPicture(mDataset.get(i).getPicture());
+
+        if(!mDataset.get(i).isAchievementAchieved()){
+            viewHolder.dimm();
+        }
 
     }
 
@@ -49,6 +51,9 @@ public class RVAchievementsAdapter extends RecyclerView.Adapter<RVAchievementsAd
             mPicture = (ImageView) itemView.findViewById(R.id.picture);
         }
         public void setmPicture(Bitmap mPicture){   this.mPicture.setImageBitmap(mPicture);}
+        public void dimm(){
+            mPicture.setAlpha((float) .5);
+        }
 
     }
 

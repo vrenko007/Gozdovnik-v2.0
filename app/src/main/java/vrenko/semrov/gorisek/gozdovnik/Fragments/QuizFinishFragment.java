@@ -3,8 +3,6 @@ package vrenko.semrov.gorisek.gozdovnik.Fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.Gravity;
@@ -17,11 +15,8 @@ import android.widget.TextView;
 
 import com.parse.ParseUser;
 
-import java.net.PasswordAuthentication;
-
 import vrenko.semrov.gorisek.gozdovnik.HomeActivity;
 import vrenko.semrov.gorisek.gozdovnik.Models.Achievement;
-import vrenko.semrov.gorisek.gozdovnik.Models.Question;
 import vrenko.semrov.gorisek.gozdovnik.Models.Quiz;
 import vrenko.semrov.gorisek.gozdovnik.QuizActivity;
 import vrenko.semrov.gorisek.gozdovnik.R;
@@ -59,8 +54,8 @@ public class QuizFinishFragment extends Fragment {
             if(mScore > 7){
                 mAchivement = Achievement.getFromQuizID(quizID);
                 mBadge = mAchivement.getPicture();
-                ParseUser.getCurrentUser().getRelation("activements").add(mAchivement);
-                ParseUser.getCurrentUser().getRelation("completedQuizzes").add(mQuiz);
+                mAchivement.setAchievementAchieved(true);
+                ParseUser.getCurrentUser().getRelation("achievements").add(mAchivement);
                 ParseUser.getCurrentUser().saveEventually();
             }
         }
@@ -77,6 +72,7 @@ public class QuizFinishFragment extends Fragment {
         if(mScore>7){
             ImageView iv = (ImageView) v.findViewById(R.id.badge);
             iv.setImageBitmap(mBadge);
+            iv.getLayoutParams().width = 200;
             TextView tv = new TextView(getActivity());
             tv.setText("Congratulations");
             tv.setGravity(Gravity.CENTER_HORIZONTAL);
