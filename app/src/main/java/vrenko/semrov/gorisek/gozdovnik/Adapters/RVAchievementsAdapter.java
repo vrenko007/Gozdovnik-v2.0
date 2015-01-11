@@ -32,10 +32,6 @@ public class RVAchievementsAdapter extends RecyclerView.Adapter<RVAchievementsAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-
-        viewHolder.setmName(mDataset.get(i).getName());
-        viewHolder.setmValue(mDataset.get(i).getValue());
-        viewHolder.setmDescription(mDataset.get(i).getDescription());
         viewHolder.setmPicture(mDataset.get(i).getPicture());
 
     }
@@ -46,23 +42,12 @@ public class RVAchievementsAdapter extends RecyclerView.Adapter<RVAchievementsAd
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView mName;
-        TextView mValue;
-        TextView mDescription;
         ImageView mPicture;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            mName = (TextView) itemView.findViewById(R.id.name);
-            mDescription = (TextView) itemView.findViewById(R.id.description);
-            mValue = (TextView) itemView.findViewById(R.id.value);
             mPicture = (ImageView) itemView.findViewById(R.id.picture);
         }
-
-        public void setmName(String mName) {        this.mName.setText(mName);      }
-        public void setmValue(int mValue){           this.mValue.setText(String.format("%04d",mValue));    }
-        public void setmDescription(String mDescription){this.mDescription.setText(mDescription);   }
         public void setmPicture(Bitmap mPicture){   this.mPicture.setImageBitmap(mPicture);}
 
     }

@@ -19,6 +19,8 @@ import java.util.List;
 @ParseClassName("Quiz")
 public class Quiz extends ParseObject {
 
+    public static final String QUIZ_ID = "vrenko.semrov.gorisek.gozdovnik.ARG_QUIZ_ID";
+
     public String getName(){
         return getString("name");
     }
@@ -56,6 +58,16 @@ public class Quiz extends ParseObject {
             }
         });
 
+    }
+
+    public static Quiz getQuizByID(String quizID){
+        ParseQuery<Quiz> pq = ParseQuery.getQuery(Quiz.class);
+        try {
+            return pq.get(quizID);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     public interface OnQuizzesRecievedListener{
         public void quizzesReceived(List <Quiz> quizzes);

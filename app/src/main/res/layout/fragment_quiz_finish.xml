@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="vrenko.semrov.gorisek.gozdovnik.Fragments.QuizFinishFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="true"
+        android:id="@+id/layout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/badge"
+            android:src="@drawable/ic_logo"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentStart="false"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</RelativeLayout>

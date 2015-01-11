@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.lucasr.twowayview.widget.TwoWayView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,7 @@ import vrenko.semrov.gorisek.gozdovnik.R;
  */
 public class AchievementListFragment extends Fragment implements Achievement.OnAchievementsRecievedListener {
     
-    private RecyclerView mAchievementList;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private TwoWayView mAchievementList;
     private RVAchievementsAdapter mAchievementAdapter;
     private List<Achievement> mAchievements;
     private ProgressDialog mProgress;
@@ -54,12 +55,9 @@ public class AchievementListFragment extends Fragment implements Achievement.OnA
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_achievement_list, container, false);
 
-        mAchievementList = (RecyclerView) v.findViewById(R.id.achievement_list);
+        mAchievementList = (TwoWayView) v.findViewById(R.id.achievement_list);
 
         mAchievementList.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mAchievementList.setLayoutManager(mLayoutManager);
 
         mAchievements = new ArrayList<>();
         Achievement.getAchievements(this);

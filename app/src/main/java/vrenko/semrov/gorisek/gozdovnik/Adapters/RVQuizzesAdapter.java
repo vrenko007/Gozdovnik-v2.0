@@ -18,6 +18,7 @@ import java.util.List;
 
 import vrenko.semrov.gorisek.gozdovnik.Models.Achievement;
 import vrenko.semrov.gorisek.gozdovnik.Models.Quiz;
+import vrenko.semrov.gorisek.gozdovnik.QuizActivity;
 import vrenko.semrov.gorisek.gozdovnik.R;
 
 
@@ -43,6 +44,8 @@ public class RVQuizzesAdapter extends RecyclerView.Adapter<RVQuizzesAdapter.View
         viewHolder.setmName(mDataset.get(i).getName());
 
         viewHolder.mViewPDF.setOnClickListener(new OnPDFClickListener(mDataset.get(i).getFileAsByteArray()));
+
+        viewHolder.mTakeQuiz.setOnClickListener(new OnQuizClickListener(mDataset.get(i).getObjectId()));
 
     }
 
@@ -85,6 +88,25 @@ public class RVQuizzesAdapter extends RecyclerView.Adapter<RVQuizzesAdapter.View
 
                 intent.setType("application/pdf");
                 v.getContext().startActivity(intent);
+        }
+    }
+
+    class OnQuizClickListener implements View.OnClickListener{
+
+        String mQuiz;
+
+        OnQuizClickListener(String quizID) {
+            mQuiz = quizID;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), QuizActivity.class);
+            intent.setAction("android.intent.action.VIEW");
+            intent.putExtra(Quiz.QUIZ_ID,mQuiz);
+
+            intent.setType("application/pdf");
+            v.getContext().startActivity(intent);
         }
     }
 

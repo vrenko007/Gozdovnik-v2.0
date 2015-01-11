@@ -2,6 +2,8 @@ package vrenko.semrov.gorisek.gozdovnik.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.parse.ParseUser;
 
+import vrenko.semrov.gorisek.gozdovnik.Helpers.RoundedImage;
 import vrenko.semrov.gorisek.gozdovnik.LoginDispatchActivity;
 import vrenko.semrov.gorisek.gozdovnik.QuizListActivity;
 import vrenko.semrov.gorisek.gozdovnik.R;
@@ -41,7 +45,18 @@ public class UserInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_user_info, container, false);
 
+        TextView tv = (TextView)v.findViewById(R.id.userName);
+
+        tv.setText(ParseUser.getCurrentUser().getString("name"));
+
+        ImageView iv1 = (ImageView) v.findViewById(R.id.userImage);
+
+        iv1.setImageBitmap(RoundedImage.getCroppedBitmap(BitmapFactory.decodeResource(getActivity().getResources(),
+                R.drawable.placeholder_user),50));
+
         ImageView iv = (ImageView) v.findViewById(R.id.logoutImage);
+
+
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override

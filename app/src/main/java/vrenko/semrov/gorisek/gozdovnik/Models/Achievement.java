@@ -5,9 +5,11 @@ import android.graphics.BitmapFactory;
 
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +42,26 @@ public class Achievement extends ParseObject {
         });
 
     }
+
+    public static Achievement getFromQuizID(String quizID) {
+        ParseQuery<Achievement> pq = ParseQuery.getQuery(Achievement.class);
+        pq.whereStartsWith("quizID", quizID);
+
+        List<Achievement> achivements = new ArrayList<>();
+
+        try {
+             achivements = pq.find();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(achivements.size()<1){
+            return null;
+        }
+
+        return achivements.get(0);
+    }
+
     public interface OnAchievementsRecievedListener{
         public void achievementReceived(List <Achievement> achievement);
     }

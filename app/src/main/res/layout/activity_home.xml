@@ -18,17 +18,4 @@
         android:id="@+id/fragment2"
         tools:layout="@layout/fragment_achievement_list" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
-        android:id="@+id/logout" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logout"
-        android:id="@+id/btnPdf"
-        android:text="open pdf"
-        />
-
 </LinearLayout>

@@ -23,57 +23,10 @@ import java.io.IOException;
 
 public class HomeActivity extends ActionBarActivity {
 
-    // za testne namene
-    Button btnPdf;
-    private final static String path =   "/sdcard/Download/test.pdf";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        Button logout = (Button) findViewById(R.id.logout);
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                if(ParseUser.getCurrentUser() == null){
-                    startActivity(new Intent(HomeActivity.this, LoginDispatchActivity.class));
-                }
-            }
-        });
-
-        // za testne namene
-        btnPdf = (Button) findViewById(R.id.btnPdf);
-        btnPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File f = new File(path);
-                try {
-                    FileInputStream fis = new FileInputStream(f);
-                   byte buffer[] = new byte[(int)f.length()];
-                   fis.read(buffer);
-                   Intent intent = new Intent(v.getContext(), MuPDFActivityBytes.class);
-                   intent.setAction("android.intent.action.VIEW");
-                        //intent.setData(Uri.fromFile(f));
-                   intent.putExtra("buffer",buffer);
-                   intent.putExtra("FileName", "PDF_NASLOV");
-
-                    intent.setType("application/pdf");
-                   startActivity(intent);
-                }
-                catch (FileNotFoundException e)
-                {
-                    Toast.makeText(v.getContext(), "Ne najdem test.pdf", Toast.LENGTH_LONG).show();
-                }
-                catch (IOException io)
-                {
-                    Toast.makeText(v.getContext(), "Napaka pri branju datoteke", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
     }
 
 
